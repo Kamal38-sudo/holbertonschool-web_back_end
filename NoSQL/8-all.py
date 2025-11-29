@@ -1,4 +1,3 @@
-//  List all documents in Python
 #!/usr/bin/env python3
 """ 8-all.py """
 
@@ -18,4 +17,3 @@ def list_all(mongo_collection):
     # find() returns a cursor, convert to list
     documents = list(mongo_collection.find())
     return documents
-
