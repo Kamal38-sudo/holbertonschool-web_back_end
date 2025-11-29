@@ -1,5 +1,3 @@
-// Database-i seç (3.x versiyasi
-db = db.getSiblingDB("my_db");
-
-// Collection-a document əlavə et
+// Insert document
 db.school.insertOne({ name: "Holberton school" });
+
