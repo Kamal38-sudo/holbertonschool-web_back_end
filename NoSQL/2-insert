@@ -1,3 +1,5 @@
-// Insert document
-db.school.insertOne( {name: Holberton School"} );
-mongo my_db 0-insert_document.js
+// Database-i seç (3.x versiyasi
+db = db.getSiblingDB("my_db");
+
+// Collection-a document əlavə et
+db.school.insertOne({ name: "Holberton school" });
