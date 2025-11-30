@@ -1,3 +1,8 @@
 // Insert document
-db.school.insertOne({ name: "Holberton school" });
+#!/usr/bin/env bash
+# Script to insert a document in the 'school' collection
+# Usage: cat 2-insert | mongo <database_name>
+
+# Insert the document
+db.school.insert({ name: "Holberton school" })
 
