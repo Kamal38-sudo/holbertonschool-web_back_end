@@ -1,24 +1,30 @@
 #!/usr/bin/env python3
-"""
-Script that provides stats about Nginx logs stored in MongoDB.
-"""
-
+""" 12-log_stats module """
 from pymongo import MongoClient
 
-if __name__ == "__main__":
-    client = MongoClient("mongodb://127.0.0.1:27017")
-    collection = client.logs.nginx
 
-    print(f"{collection.count_documents({})} logs")
+def log_stats():
+    """ Provides some stats about Nginx logs stored in MongoDB """
+    client = MongoClient('mongodb://127.0.0.1:27017')
+    nginx_collection = client.logs.nginx
 
+    # Count all documents
+    total_logs = nginx_collection.count_documents({})
+    print("{} logs".format(total_logs))
+
+    # Count documents by method
     print("Methods:")
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
-    for m in methods:
-        count = collection.count_documents({"method": m})
-        print(f"\tmethod {m}: {count}")
+    for method in methods:
+        count = nginx_collection.count_documents({"method": method})
+        print("\tmethod {}: {}".format(method, count))
 
-    status_count = collection.count_documents(
+    # Count status checks (method=GET, path=/status)
+    status_check_count = nginx_collection.count_documents(
         {"method": "GET", "path": "/status"}
     )
-    print(f"{status_count} status check")
+    print("{} status check".format(status_check_count))
 
+
+if __name__ == "__main__":
+    log_stats()
